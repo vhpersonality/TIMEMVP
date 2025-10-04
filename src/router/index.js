@@ -19,6 +19,10 @@ const routes = [
     path: '/list/:id',
     name: 'list',
     component: () => import('@/views/ListView.vue')
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/today'
   }
 ]
 

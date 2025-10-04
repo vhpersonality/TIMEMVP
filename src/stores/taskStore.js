@@ -18,39 +18,6 @@ export const useTaskStore = defineStore('tasks', () => {
     })
   }
 
-  const updateTask = (id, updates) => {
-    const index = tasks.value.findIndex(task => task.id === id)
-    if (index !== -1) {
-      tasks.value[index] = { ...tasks.value[index], ...updates }
-    }
-  }
-
-  const deleteTask = (id) => {
-    tasks.value = tasks.value.filter(task => task.id !== id)
-  }
-
-  const addList = (list) => {
-    lists.value.push(list)
-  }
-
-  const updateList = (id, updates) => {
-    const index = lists.value.findIndex(list => list.id === id)
-    if (index !== -1) {
-      lists.value[index] = { ...lists.value[index], ...updates }
-    }
-  }
-
-  const deleteList = (id) => {
-    lists.value = lists.value.filter(list => list.id !== id)
-    // Перемещаем задачи из удаленного списка во Входящие
-    tasks.value.forEach(task => {
-      if (task.listId === id) {
-        task.listId = null
-      }
-    })
-  }
-
-  // Геттеры
   const getTodayTasks = computed(() => () => {
     const today = new Date().toDateString()
     return tasks.value.filter(task => 
@@ -70,11 +37,6 @@ export const useTaskStore = defineStore('tasks', () => {
     tasks,
     lists,
     addTask,
-    updateTask,
-    deleteTask,
-    addList,
-    updateList,
-    deleteList,
     getTodayTasks,
     getInboxTasks,
     getTasksByList
