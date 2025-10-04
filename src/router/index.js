@@ -19,6 +19,11 @@ const routes = [
     path: '/list/:id',
     name: 'list',
     component: () => import('@/views/ListView.vue')
+  },
+  {
+    // Перехватываем все остальные маршруты для SPA
+    path: '/:pathMatch(.*)*',
+    redirect: '/today'
   }
 ]
 
