@@ -1,47 +1,31 @@
 <template>
   <div class="today-view">
-    <div class="view-header">
-      <h1>Сегодня</h1>
-      <p class="subtitle">{{ formattedDate }}</p>
-    </div>
-    <TaskList :tasks="todayTasks" />
+    <h1>TaskFlow - Управление задачами</h1>
+    <p>Приложение успешно запущено! 🎉</p>
+    <el-button type="primary" @click="$router.push('/today')">
+      Перейти к задачам
+    </el-button>
   </div>
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { useTaskStore } from '@/stores/taskStore'
-import TaskList from '@/components/tasks/TaskList.vue'
-import { formatCurrentDate } from '@/utils/dateUtils'
-
-const taskStore = useTaskStore()
-
-const todayTasks = computed(() => taskStore.getTodayTasks())
-const formattedDate = computed(() => {
-  const date = formatCurrentDate()
-  return `${date.weekday}, ${date.date}`
-})
+// Простой компонент для тестирования
 </script>
 
 <style scoped>
 .today-view {
-  max-width: 800px;
-  margin: 0 auto;
+  text-align: center;
+  padding: 50px 20px;
 }
 
-.view-header {
-  margin-bottom: 32px;
-}
-
-.view-header h1 {
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 8px;
+.today-view h1 {
+  margin-bottom: 20px;
   color: #1f2937;
 }
 
-.subtitle {
-  font-size: 16px;
+.today-view p {
+  margin-bottom: 30px;
+  font-size: 18px;
   color: #6b7280;
 }
 </style>
